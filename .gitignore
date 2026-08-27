@@ -1,0 +1,45 @@
+# Eclipse
+.metadata/
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+
+# Eclipse project files
+.settings/
+.classpath
+.project
+
+# Java build files
+build/
+target/
+
+# Tomcat generated files
+Servers/
+wtpwebapps/
+
+# Logs
+*.log
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# IDE
+.vscode/
+
+# Uploaded resumes
+SmartHireUploads/
+uploads/
+
+# Database credentials
+db.properties
+database.properties
+.env
+
+# Compiled files
+*.class
+
+# Backup files
+*.sql.bak
