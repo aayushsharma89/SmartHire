@@ -6,16 +6,36 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
-    private static final String URL =
-            "jdbc:mysql://localhost:3306/smarthire";
+    private static String getEnv(String name, String defaultValue) {
 
-    private static final String USER =
-            "root";
+        String value = System.getenv(name);
 
-    private static final String PASSWORD =
-            "2409";
+        if (value == null || value.isBlank()) {
+            return defaultValue;
+        }
+
+        return value;
+    }
 
     public static Connection getConnection() {
+
+        String host = getEnv("DB_HOST", "localhost");
+        String port = getEnv("DB_PORT", "3306");
+        String database = getEnv("DB_NAME", "smarthire");
+        String user = getEnv("DB_USER", "root");
+
+        String password = System.getenv("DB_PASSWORD");
+
+        if (password == null || password.isBlank()) {
+            throw new RuntimeException(
+                "DB_PASSWORD environment variable is not set."
+            );
+        }
+
+        String url =
+                "jdbc:mysql://" + host + ":" + port + "/" + database
+                + "?useSSL=false&allowPublicKeyRetrieval=true"
+                + "&serverTimezone=UTC";
 
         try {
 
@@ -23,9 +43,9 @@ public class DBConnection {
 
             Connection connection =
                     DriverManager.getConnection(
-                            URL,
-                            USER,
-                            PASSWORD
+                            url,
+                            user,
+                            password
                     );
 
             System.out.println(

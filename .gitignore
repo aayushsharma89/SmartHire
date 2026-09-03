@@ -43,3 +43,7 @@ database.properties
 
 # Backup files
 *.sql.bak
+
+build/
+bin/
+.settings/
